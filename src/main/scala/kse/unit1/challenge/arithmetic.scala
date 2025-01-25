@@ -32,6 +32,9 @@ object arithmetic:
     else addition(increment(left), decrement(right))
 
   def multiplication(left: Number, right: Number): Number =
+    require(left >= 0, "Left must be non-negative")
+    require(right >= 0, "Right must be non-negative")
+
     @tailrec
     def multiplicationReq(left: Number, right: Number, accumulator: Number): Number =
       if isZero(right) then accumulator
@@ -40,6 +43,9 @@ object arithmetic:
     multiplicationReq(left, right, 0)
 
   def power(base: Number, p: Number): Number =
+    require(p >= 0, "Power must be non-negative")
+    require(base != 0 || p != 0, "0^0 is undefined")
+
     @tailrec
     def powerReq(base: Number, p: Number, accumulator: Number): Number =
       if isZero(p) then accumulator
