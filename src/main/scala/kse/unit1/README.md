@@ -34,9 +34,9 @@ end recursive
 ````
 
 Review
-* [Singleton objects](https://docs.scala-lang.org/tour/singleton-objects.html)
-* [The End Marker](https://docs.scala-lang.org/scala3/reference/other-new-features/indentation.html)
-* [Optional braces](https://docs.scala-lang.org/scala3/reference/other-new-features/indentation.html)
+* [Scala Docs. Singleton objects](https://docs.scala-lang.org/tour/singleton-objects.html)
+* [Scala 3 Reference. The End Marker](https://docs.scala-lang.org/scala3/reference/other-new-features/indentation.html)
+* [Scala 3 Reference. Optional braces](https://docs.scala-lang.org/scala3/reference/other-new-features/indentation.html)
 
 
 ### Type aliases
@@ -45,7 +45,7 @@ Review
 type Number = BigInt
 ```
 Review
-* [Scala type aliases (syntax, examples)](https://alvinalexander.com/scala/scala-type-aliases-syntax-examples/)
+* [Alvin Alexander. Scala type aliases (syntax, examples)](https://alvinalexander.com/scala/scala-type-aliases-syntax-examples/)
 
 ### Require
 ```scala 3
@@ -53,7 +53,7 @@ require(n >= 0, "Argument should be non-negative")
 ```
 
 Review
-* [Difference Between assert and require](https://www.baeldung.com/scala/assert-vs-require)
+* [Baeldung. Difference Between assert and require](https://www.baeldung.com/scala/assert-vs-require)
 
 
 ### Conditional expressions
@@ -64,7 +64,7 @@ else n * factorial(n - 1)
 ```
 
 Review
-* [Conditional expressions](https://www.baeldung.com/scala/conditional-expressions)
+* [Baeldung. Conditional expressions](https://www.baeldung.com/scala/conditional-expressions)
 
 ### Recursion and tail recursion
 ```scala 3
@@ -76,13 +76,11 @@ def factorialReq(n: Number, acc: Number): Number =
 
 Review
 * [Tail call](https://en.wikipedia.org/wiki/Tail_call)
-* [Tail recursion in Scala](https://www.baeldung.com/scala/tail-recursion)
-* [@tailrec annotation](https://docs.scala-lang.org/tour/annotations.html#annotations-that-ensure-correctness-of-encodings)
+* [Baeldung. Tail recursion in Scala](https://www.baeldung.com/scala/tail-recursion)
+* [Scala Docs. @tailrec annotation](https://docs.scala-lang.org/tour/annotations.html#annotations-that-ensure-correctness-of-encodings)
 
 ### Function and methods
 
 Review
-* [Functions and methods](https://www.baeldung.com/scala/functions-methods)
-* [Methods vs functions](https://rjlfinn.medium.com/scala-methods-vs-functions-970342a842c9)
-
-
+* [Baeldung. Functions and methods](https://www.baeldung.com/scala/functions-methods)
+* [Medium. Methods vs functions](https://rjlfinn.medium.com/scala-methods-vs-functions-970342a842c9)

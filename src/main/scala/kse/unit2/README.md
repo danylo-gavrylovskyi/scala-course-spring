@@ -4,11 +4,13 @@ You are challenged to implement Boolean algebra:
 * implement `negation`, `conjunction`, `disjunction`, `implication` and `equivalence` operators;
 * it is not allowed to use embedded `scala.Boolean`;
 * it is not allowed to use embedded logic operations for implementing boolean operators;
+* `fold` method should be implemented recursively, it's not allowed to use `List`/`Seq` api (i.e. `list.fold(...)`).
 * it is required to provide implementation for `NegationSpecification`, `ConjunctionSpecification`
 `DisjunctionSpecification`, `ImplicationSpecification`, `AxiomsSpecification`, `FoldSpecification`
 * `False ∧ value should ignore the second argument`, `True ∨ value should ignore the second argument` 
 and `False → value should ignore the second argument` are required.
 * `EquivalenceSpecification` is an optional challenge;
+* implement the required tests;
 * all tests should pass;
 * github build must be green.
 
@@ -44,7 +46,7 @@ Review
 * [Union type](https://en.wikipedia.org/wiki/Union_type)
 * [Scala 3 Reference. Union Types](https://docs.scala-lang.org/scala3/reference/new-types/union-types.html)
 * [Scala 3 Book. Union Types](https://docs.scala-lang.org/scala3/book/types-union.html)
-* [Type Disjunction (Union Types) in Scala](https://www.baeldung.com/scala/type-disjunction)
+* [Baeldung. Type Disjunction (Union Types) in Scala](https://www.baeldung.com/scala/type-disjunction)
 * [Understanding Union Types in Scala 3](https://www.turingtaco.com/understanding-union-types-in-scala-3/)
 
 ### Explicit Nulls
@@ -52,7 +54,7 @@ Explicit nulls is an opt-in feature that modifies the Scala type system,
 which makes reference types (anything that extends AnyRef) non-nullable.
 
 Review
-* [Explicit Nulls](https://docs.scala-lang.org/scala3/reference/experimental/explicit-nulls.html)
+* [Scala 3 Reference. Explicit Nulls](https://docs.scala-lang.org/scala3/reference/experimental/explicit-nulls.html)
 
 ### Pattern matching
 
@@ -69,8 +71,8 @@ def addition(left: Nat3, right: Nat3): Nat3 =
 Review
 * [Pattern matching](https://en.wikipedia.org/wiki/Pattern_matching)
 * [Scala 3 Book. Pattern Matching](https://docs.scala-lang.org/tour/pattern-matching.html)
-* [Pattern Matching in Scala](https://www.baeldung.com/scala/pattern-matching)
-* [Scala 3: Match Types Quickly Explained](https://rockthejvm.com/articles/scala-3-match-types)
+* [Baeldung. Pattern Matching in Scala](https://www.baeldung.com/scala/pattern-matching)
+* [Rock the JVM. Scala 3: Match Types Quickly Explained](https://rockthejvm.com/articles/scala-3-match-types)
 * [Lean 4 Reference. Pattern Matching](https://lean-lang.org/doc/reference/latest/Terms/Pattern-Matching/)
 
 ### Call-by-Value and Call-by-Name parameters
@@ -83,17 +85,17 @@ def multiplication(left: Nat3, right: => Nat3): Nat3
 
 Review
 * [Scala 3 Book. By-name parameters](https://docs.scala-lang.org/tour/by-name-parameters.html)
-* [By-Value and By-Name Parameters in Scala](https://www.baeldung.com/scala/parameters-by-value-by-name)
-* [3 Fun Call-by-Name Tricks in Scala](https://rockthejvm.com/articles/3-call-by-name-tricks-in-scala)
+* [Baeldung. By-Value and By-Name Parameters in Scala](https://www.baeldung.com/scala/parameters-by-value-by-name)
+* [Rock the JVM. 3 Fun Call-by-Name Tricks in Scala](https://rockthejvm.com/articles/3-call-by-name-tricks-in-scala)
 
 
 ### The @targetName annotation
 ```scala 3
-@targetName("Addition")
+@targetName("addition")
 ```
 Review
-* [The @targetName annotation](https://docs.scala-lang.org/scala3/reference/other-new-features/targetName.html)
-* [@targetName Annotation in Scala 3](https://www.baeldung.com/scala/targetname-annotation)
+* [Scala 3 Reference. The @targetName annotation](https://docs.scala-lang.org/scala3/reference/other-new-features/targetName.html)
+* [Baeldung. @targetName Annotation in Scala 3](https://www.baeldung.com/scala/targetname-annotation)
 
 ### Operators
 Scala 3 is a full OOP language, everything in Scala is an object, that's why there is no "embedded" primitive operators,
@@ -105,7 +107,7 @@ def +(that: Nat3): Nat3
 Review
 * [Scala 3 Reference. Rules for Operators](https://docs.scala-lang.org/scala3/reference/changed-features/operators.html)
 * [Scala 3 Book. Operators](https://docs.scala-lang.org/tour/operators.html)
-* [Introduction to Scala Operators](https://www.baeldung.com/scala/operators-intro)
+* [Baeldung. Introduction to Scala Operators](https://www.baeldung.com/scala/operators-intro)
 
 
 ### Extension methods
@@ -114,10 +116,10 @@ not possible to extend the classes.
 ```scala 3
 extension (value: Nat3)
 
-    @targetName("Addition")
+    @targetName("addition")
     infix def +(that: Nat3): Nat3 = functions.addition(value, that)
     
-    @targetName("Multiplication")
+    @targetName("multiplication")
     infix def *(that: => Nat3): Nat3 = functions.multiplication(value, that)
 ```
 
@@ -125,7 +127,7 @@ Review
 * [Scala 3 Reference. Extension Methods](https://docs.scala-lang.org/scala3/reference/contextual/extension-methods.html)
 * [Scala 3 Book. Extension Methods](https://docs.scala-lang.org/scala3/book/ca-extension-methods.html)
 * [Extension Methods in Scala 3](https://www.baeldung.com/scala/extension-methods)
-* [Scala 3: Extension Methods Quickly Explained](https://rockthejvm.com/articles/scala-3-extension-methods)
+* [. Scala 3: Extension Methods Quickly Explained](https://rockthejvm.com/articles/scala-3-extension-methods)
 
 
 ### Folding
