@@ -56,7 +56,7 @@ object ConjunctionEvaluationSpecification extends Properties("Conjunction Evalua
 
   property("expression ∧ False should be evaluated to False") = ???
 
-  property("left ∧ left should be correctly evaluated") = ???
+  property("left ∧ right should be correctly evaluated") = ???
 
 end ConjunctionEvaluationSpecification
 
@@ -70,7 +70,7 @@ object DisjunctionEvaluationSpecification extends Properties("Disjunction Evalua
 
   property("expression ∨ False should be evaluated to expression evaluation") = ???
 
-  property("left ∨ left should be correctly evaluated") = ???
+  property("left ∨ right should be correctly evaluated") = ???
 
 end DisjunctionEvaluationSpecification
 
@@ -80,7 +80,7 @@ object ImplicationEvaluationSpecification extends Properties("Implication Evalua
 
   property("False → expression should be evaluated to True") = ???
 
-  property("left → left should be correctly evaluated") = ???
+  property("left → right should be correctly evaluated") = ???
 
 end ImplicationEvaluationSpecification
 
@@ -92,7 +92,7 @@ object EquivalenceEvaluationSpecification extends Properties("Equivalence Evalua
 
   property("Transitivity") = ???
 
-  property("left ↔ left should be correctly evaluated") = ???
+  property("left ↔ right should be correctly evaluated") = ???
 
 end EquivalenceEvaluationSpecification
 
