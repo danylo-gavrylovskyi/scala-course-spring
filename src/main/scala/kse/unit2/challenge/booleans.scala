@@ -28,15 +28,10 @@ object booleans:
         case True  => True
 
   val implication: (Boolean, => Boolean) => Boolean =
-    (left, right) =>
-      left match
-        case False => True
-        case True  => right
+    (left, right) => (!left) ∨ right
 
   val equivalence: (Boolean, => Boolean) => Boolean =
-    case (False, False) => True
-    case (True, True)   => True
-    case _              => False
+    (left, right) => (left → right) ∧ (right → left)
 
   extension (value: Boolean)
 
