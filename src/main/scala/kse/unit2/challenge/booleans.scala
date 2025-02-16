@@ -51,9 +51,13 @@ object booleans:
     infix def ↔(that: => Boolean): Boolean = equivalence(value, that)
 
   def fold(operation: (Boolean, Boolean) => Boolean, unit: Boolean)(list: List[Boolean]): Boolean =
-    list match
-      case head :: tail => operation(head, fold(operation, unit)(tail))
-      case Nil          => unit
+    @tailrec
+    def foldReq(list: List[Boolean], acc: Boolean): Boolean =
+      list match
+        case Nil          => acc
+        case head :: tail => foldReq(tail, operation(acc, head))
+
+    foldReq(list, unit)
 
   val conjunctionOfElements: List[Boolean] => Boolean = fold(_ ∧ _, True)
   val disjunctionOfElements: List[Boolean] => Boolean = fold(_ ∨ _, False)
