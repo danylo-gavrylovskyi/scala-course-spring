@@ -61,15 +61,14 @@ object numerals:
     override def toString: String = "Nat(0)"
 
     override def equals(obj: Any): Boolean =
-      obj match
-        case Zero => true
-        case _    => false
+      obj.isInstanceOf[Zero]
+
+    override def hashCode: Int = 0
 
   object Successor:
     def unapply(successor: Successor): Option[Numeral] = Option(successor.predecessor)
 
   class Successor(n: Numeral) extends Numeral:
-
     def isZero: Boolean = false
 
     def predecessor: Numeral = n
@@ -77,8 +76,8 @@ object numerals:
     @targetName("greater than")
     infix def >(that: Numeral): Boolean =
       that match
-        case Zero    => true
-        case another => n > another.predecessor
+        case Zero         => true
+        case s: Successor => n > s.predecessor
 
     @targetName("addition")
     infix def +(that: Numeral): Numeral = new Successor(n + that)
@@ -94,6 +93,10 @@ object numerals:
 
     override def toString: String = s"Nat($toInt)"
 
-    override def equals(obj: Any): Boolean = obj match
-      case another: Successor => this.predecessor == another.predecessor
-      case _                  => false
+    override def equals(obj: Any): Boolean =
+      obj match
+        case that: Successor => that.predecessor == this.predecessor
+        case _               => false
+
+    override def hashCode: Int =
+      31 * predecessor.hashCode
