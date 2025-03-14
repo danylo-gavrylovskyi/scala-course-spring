@@ -10,19 +10,19 @@ object numerals:
 
     def predecessor: Numeral
 
-    def successor: Numeral = ???
+    def successor: Numeral = new Successor(this)
 
     @targetName("greater than")
     infix def >(that: Numeral): Boolean
 
     @targetName("greater or equal to")
-    infix def >=(that: Numeral): Boolean = ???
+    infix def >=(that: Numeral): Boolean = (this > that) || (this == that)
 
     @targetName("less than")
-    infix def <(that: Numeral): Boolean = ???
+    infix def <(that: Numeral): Boolean = !(this >= that)
 
     @targetName("less or equal to")
-    infix def <=(that: Numeral): Boolean = ???
+    infix def <=(that: Numeral): Boolean = !(this > that)
 
     @targetName("addition")
     infix def +(that: Numeral): Numeral
@@ -39,47 +39,64 @@ object numerals:
 
   object Zero extends Numeral:
 
-    def isZero: Boolean = ???
+    def isZero: Boolean = true
 
-    def predecessor: Numeral = ???
+    def predecessor: Numeral =
+      throw new NoSuchElementException("Zero has no predecessor")
 
     @targetName("greater than")
-    infix def >(that: Numeral): Boolean = ???
+    infix def >(that: Numeral): Boolean = false
 
     @targetName("addition")
-    infix def +(that: Numeral): Numeral = ???
+    infix def +(that: Numeral): Numeral = that
 
     // Optional
     @targetName("subtraction")
-    infix def -(that: Numeral): Numeral = ???
+    infix def -(that: Numeral): Numeral =
+      if that.isZero then Zero
+      else throw new NoSuchElementException("Negative result in natural number subtraction")
 
-    def toInt: Int = ???
+    def toInt: Int = 0
 
-    override def toString: String = ???
+    override def toString: String = "Nat(0)"
 
-    override def equals(obj: Any): Boolean = ???
+    override def equals(obj: Any): Boolean =
+      obj.isInstanceOf[Zero]
+
+    override def hashCode: Int = 0
 
   object Successor:
     def unapply(successor: Successor): Option[Numeral] = Option(successor.predecessor)
 
   class Successor(n: Numeral) extends Numeral:
+    def isZero: Boolean = false
 
-    def isZero: Boolean = ???
-
-    def predecessor: Numeral = ???
+    def predecessor: Numeral = n
 
     @targetName("greater than")
-    infix def >(that: Numeral): Boolean = ???
+    infix def >(that: Numeral): Boolean =
+      that match
+        case Zero         => true
+        case s: Successor => n > s.predecessor
 
     @targetName("addition")
-    infix def +(that: Numeral): Numeral = ???
+    infix def +(that: Numeral): Numeral = new Successor(n + that)
 
     // Optional
     @targetName("subtraction")
-    infix def -(that: Numeral): Numeral = ???
+    infix def -(that: Numeral): Numeral =
+      that match
+        case Zero         => this
+        case s: Successor => n - s.predecessor
 
     def toInt: Int = 1 + n.toInt
 
-    override def toString: String = ???
+    override def toString: String = s"Nat($toInt)"
 
-    override def equals(obj: Any): Boolean = ???
+    override def equals(obj: Any): Boolean =
+      obj match
+        case that: Successor => that.predecessor == this.predecessor
+        case _               => false
+
+    override def hashCode: Int =
+      31 * predecessor.hashCode
