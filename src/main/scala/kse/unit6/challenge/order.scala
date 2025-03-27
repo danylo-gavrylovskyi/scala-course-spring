@@ -8,6 +8,11 @@ object order:
   trait Order[T]:
     def compare(left: T, right: T): Int
 
+  object Order:
+
+    given Order[Numeral] with
+      def compare(x: Numeral, y: Numeral): Int = x.toInt - y.toInt
+
   extension [V: Order as ord](elem: V)
 
     infix def >(that: V): Boolean =
