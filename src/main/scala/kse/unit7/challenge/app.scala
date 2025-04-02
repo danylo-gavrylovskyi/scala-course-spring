@@ -6,9 +6,9 @@ import kse.unit7.challenge.services.*
 
 object app:
 
-  def getPostsViews(): Try[List[PostView]] = ???
+  def getPostsViews(apiKey: ApiKey): Try[List[PostView]] = ???
 
-  def getPostsViewDesugared(): Try[List[PostView]] = ???
+  def getPostsViewDesugared(apiKey: ApiKey): Try[List[PostView]] = ???
 
   def getPostView(post: Post): Try[PostView] = ???
 
