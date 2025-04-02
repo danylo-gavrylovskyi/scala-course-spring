@@ -71,6 +71,8 @@ object set:
         case that: NumeralSet => that.forAll(_ => false)
         case _                => false
 
+    override def hashCode: Int = 0
+
   end Empty
 
   case class NonEmpty(left: NumeralSet, element: Numeral, right: NumeralSet) extends NumeralSet:
@@ -118,6 +120,9 @@ object set:
       obj match
         case that: NumeralSet => this.forAll(e => that.contains(e)) && that.forAll(e => this.contains(e))
         case _                => false
+
+    override def hashCode: Int =
+      31 * (left.hashCode + element.hashCode + right.hashCode)
 
   end NonEmpty
 
