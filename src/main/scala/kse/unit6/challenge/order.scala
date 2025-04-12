@@ -11,7 +11,11 @@ object order:
   object Order:
 
     given Order[Numeral] with
-      def compare(x: Numeral, y: Numeral): Int = x.toInt - y.toInt
+
+      def compare(x: Numeral, y: Numeral): Int =
+        if x.toInt > y.toInt then 1
+        else if x.toInt < y.toInt then -1
+        else 0
 
   extension [V: Order as ord](elem: V)
 
